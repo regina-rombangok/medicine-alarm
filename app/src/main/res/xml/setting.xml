@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+
+
+    <ListPreference android:key="lang"
+        android:title="language"
+        android:entries="@array/lang"
+        android:defaultValue="@string/english"
+        android:entryValues="@array/lang" />
+
+    <PreferenceCategory android:title="@string/notification"
+        android:key="notif_Setting" >
+
+        <SwitchPreference android:key="vibrate"
+            android:title="@string/vibrate"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference android:key="light"
+            android:title="@string/light"
+            android:defaultValue="false"
+            />
+
+        <SwitchPreference android:key="sound"
+            android:title="@string/sound"
+            android:defaultValue="false"
+            />
+    </PreferenceCategory>
+
+
+
+</PreferenceScreen>
