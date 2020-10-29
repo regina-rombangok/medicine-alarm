@@ -6,10 +6,12 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 
 import com.example.maiajam.medcinealram.helper.Global;
+import com.example.maiajam.medcinealram.util.AlarmService;
 
 import static android.app.AlarmManager.INTERVAL_DAY;
 import static android.app.AlarmManager.RTC_WAKEUP;
@@ -31,9 +33,8 @@ public class AlarmReciver extends BroadcastReceiver {
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onReceive(Context context, Intent intent) {
-
         getMedInfoAndNotifyUser(context, intent);
-        resetTheNextRepetedAlarm(context, intent);
+//        resetTheNextRepetedAlarm(context, intent);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)

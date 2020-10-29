@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light">
         <service
-            android:name=".util.AlarmService"
+            android:name="com.example.maiajam.medcinealram.util.AlarmService"
             android:enabled="true"
             android:exported="true"></service>
 
@@ -55,13 +55,14 @@
             android:enabled="true"
             android:exported="true"
             android:process=":remote">
+        </receiver>
+        <receiver
+            android:name=".util.reciver.BootReciver"
+            android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver
-            android:name=".util.reciver.BootReciver"
-            android:enabled="true"></receiver>
     </application>
 
 </manifest>
