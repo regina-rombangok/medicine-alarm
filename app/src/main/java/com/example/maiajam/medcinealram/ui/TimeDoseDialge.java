@@ -94,7 +94,7 @@ public class TimeDoseDialge extends DialogFragment implements View.OnClickListen
         noTime = getArguments().getInt("noTime", 1);
         min = timePicker.getMinute();
         Hour = timePicker.getHour();
-        int a;
+
         if (Hour > 12) {
             a = 2;
         } else {

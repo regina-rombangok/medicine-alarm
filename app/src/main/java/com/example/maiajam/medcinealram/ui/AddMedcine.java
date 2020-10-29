@@ -39,6 +39,7 @@ import com.example.maiajam.medcinealram.data.model.Medcine;
 import com.example.maiajam.medcinealram.data.sql.Mysql;
 import com.example.maiajam.medcinealram.R;
 import com.example.maiajam.medcinealram.helper.Global;
+import com.example.maiajam.medcinealram.util.AlarmService;
 import com.example.maiajam.medcinealram.util.reciver.AlarmReciver;
 
 import java.text.ParseException;
@@ -472,25 +473,25 @@ public class AddMedcine extends AppCompatActivity implements TimeDoseDialge.Alar
                     AddMed(Med_name, Med_Note, First_Alarm, Dose, startdate, NoTime);
 
                     Toast.makeText(getBaseContext(), getResources().getString(R.string.doneAdded).toString(), Toast.LENGTH_LONG).show();
-                }
-            } else {
-                Date startdate = null;
-                try {
-                    startdate = (Date) new SimpleDateFormat("MM/dd", Locale.getDefault()).parse(start_Date);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Date _firstAlarm = null;
-                try {
-                    _firstAlarm = (Date) new SimpleDateFormat("hh:mm a").parse(First_Alarm);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+                } else {
+                    Date startdate = null;
+                    try {
+                        startdate = (Date) new SimpleDateFormat("MM/dd", Locale.getDefault()).parse(start_Date);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Date _firstAlarm = null;
+                    try {
+                        _firstAlarm = (Date) new SimpleDateFormat("hh:mm a").parse(First_Alarm);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
 
-                startAlarm(NoTime, Med_Note, Med_name, Dose, _firstAlarm, startdate);
+                    startAlarm(NoTime, Med_Note, Med_name, Dose, _firstAlarm, startdate);
 
-                upDateMed(Med_name, Med_Note, First_Alarm, Dose, startdate, NoTime);
-                Toast.makeText(getBaseContext(), getResources().getString(R.string.doneUpdate), Toast.LENGTH_LONG).show();
+                    upDateMed(Med_name, Med_Note, First_Alarm, Dose, startdate, NoTime);
+                    Toast.makeText(getBaseContext(), getResources().getString(R.string.doneUpdate), Toast.LENGTH_LONG).show();
+                }
             }
             finish();
         }
@@ -645,17 +646,19 @@ public class AddMedcine extends AppCompatActivity implements TimeDoseDialge.Alar
             if (time.getTimeInMillis() < System.currentTimeMillis()) {
                 time.add(Calendar.DAY_OF_YEAR, 1); // it will tell to run to next day
             }
-            schuldeAlaram((int) time.getTimeInMillis(), noRepeatedTime);
+            schuldeAlaram((long) time.getTimeInMillis(), noRepeatedTime);
         } else if (noRepeatedTime == 2) {
-            schuldeAlaram((int) time.getTimeInMillis(), noRepeatedTime);
+            schuldeAlaram((long) time.getTimeInMillis(), noRepeatedTime);
         } else if (noRepeatedTime == 3) {
-            schuldeAlaram((int) time.getTimeInMillis(), noRepeatedTime);
+            schuldeAlaram((long) time.getTimeInMillis(), noRepeatedTime);
         }
 
     }
 
-    private void schuldeAlaram(int IntilaDelay, int noTime) {
-
+    private void schuldeAlaram(long IntilaDelay, int noTime) {
+//        Intent startIntent = new Intent(getApplicationContext(), AlarmService.class);
+//        startIntent.setAction("ACTION_START_SERVICE");
+//        startService(startIntent);
         initializeAlarm(noTime);
         switch (noTime) {
             case 1:// No repeating at the same day
