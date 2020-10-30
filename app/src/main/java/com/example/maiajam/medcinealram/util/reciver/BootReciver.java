@@ -3,6 +3,7 @@ package com.example.maiajam.medcinealram.util.reciver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.example.maiajam.medcinealram.helper.HelperMethodes;
 import com.example.maiajam.medcinealram.util.AlarmService;
@@ -12,9 +13,9 @@ import static com.example.maiajam.medcinealram.helper.HelperMethodes.getAllMedic
 public class BootReciver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent startServiceIntent = new Intent(context, AlarmService.class);
-        context.startService(startServiceIntent);
-//        checkIfForBootCompleted(context,intent);
+//        Intent startServiceIntent = new Intent(context, AlarmService.class);
+//        context.startService(startServiceIntent);
+        checkIfForBootCompleted(context,intent);
     }
 
     private void checkIfForBootCompleted(Context context, Intent intent) {
